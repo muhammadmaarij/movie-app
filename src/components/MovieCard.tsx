@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/MovieCardStyles.css";
 
 interface MovieCardProps {
+  id: number;
   name: string;
   imageUrl: string;
   rating: number;
@@ -9,6 +10,7 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({
+  id,
   name,
   imageUrl,
   rating,
@@ -18,6 +20,7 @@ const MovieCard: React.FC<MovieCardProps> = ({
 
   const handleMouseEnter = () => {
     setIsHovered(true);
+    console.log(overview.length);
   };
 
   const handleMouseLeave = () => {
@@ -31,16 +34,34 @@ const MovieCard: React.FC<MovieCardProps> = ({
       onMouseLeave={handleMouseLeave}
     >
       <div>
-        <img src={imageUrl} alt={name} className="movie-image" />
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${imageUrl}`}
+          alt={name}
+          className="movie-image"
+        />
         <div className="movie-details">
           <h4 className="movie-name">{name}</h4>
           <div className="div-rating">
-            <p className="movie-rating">{rating}</p>
+            <p
+              className="movie-rating"
+              style={rating > 7 ? { color: "lightgreen" } : { color: "red" }}
+            >
+              {rating}
+            </p>
           </div>
         </div>
       </div>
       {isHovered && (
-        <div className="div-overview">
+        <div
+          className="div-overview"
+          style={
+            overview.length > 330
+              ? { top: "80px", height: "300px" }
+              : overview.length > 240
+              ? { top: "150px", height: "230px" }
+              : { top: "180px", height: "200px" }
+          }
+        >
           <p className="overview-text">Overview: </p>
           <p className="movie-overview">{overview}</p>
         </div>

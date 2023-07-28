@@ -5,8 +5,9 @@
 .movie-card{
     height: 380px;
     width: 200px;
-    background-color: slategray;
+    background-color: #071952;
     position: relative;
+    margin: 30px;
 }
 .movie-image{
     height: 300px;
@@ -29,33 +30,36 @@
     font-size: 16px;
     margin-top: 5px;
     margin-left: 10px;
+    color: #F6F4EB;
 }
 .div-rating{
-    background-color: black;
+    background-color: #0B666A;
     height: 20px;
     width: 45px;
     align-items: center;
     justify-content: center;
     padding-bottom: 1px;
-    opacity: 0.5;
+    opacity: 0.8;
     margin-top: 30px;
 }
 .movie-rating{
-    color: lightgreen;
-    font-weight: 600;
+    color: #F6F4EB;
+    font-weight: 700;
     font-size: 14px;
 }
 .div-overview{
     position: absolute;
-    top: 180px;
+    /* top: 90px; */
     left: 0;
     width: 200px;
-    height: 200px;
-    background-color: white;
+    /* height: 290px; */
+    background-color: #97FEED;
 }
 .overview-text{
     text-align: left;
-    margin: 13px;
+    margin-left: 13px;
+    margin-top: 13px;
+    font-weight: 600;
 }
 .movie-overview{
     width: 180px;
@@ -63,6 +67,5 @@
     text-align: left;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 14px;
-    margin-top: 2px;
     margin-left: 13px;
 }
