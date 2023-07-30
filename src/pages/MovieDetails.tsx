@@ -1,5 +1,6 @@
 // MovieDetails.tsx
 import React, { useEffect, useState } from "react";
+import "../styles/MovieDetailStyles.css";
 import { useParams, Link } from "react-router-dom";
 
 interface MovieDetailsParams {
@@ -10,7 +11,7 @@ interface Movie {
   title: string;
   overview: string;
   genres: Array<string>;
-  rate: Number;
+  rating: Number;
   url: string;
   releaseDate: string;
 }
@@ -37,7 +38,7 @@ const MovieDetails: React.FC = () => {
         setMovie({
           title: data.title,
           overview: data.overview,
-          rate: data.vote_average,
+          rating: data.vote_average,
           url: data.poster_path,
           releaseDate: data.release_date,
           genres: data.genres.map((genre: { name: string }) => genre.name),
@@ -52,9 +53,36 @@ const MovieDetails: React.FC = () => {
   }, [id]);
 
   return (
-    <div>
-      <h1>Movie Details</h1>
-      <p>Movie ID: {id}</p>
+    <div className="movie-card-detail">
+      <div>
+        <h4 className="movie-name-detail">{movie?.title}</h4>
+        <p className="movie-year-detail">
+          {movie?.releaseDate.substring(0, 4)}
+        </p>
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${movie?.url}`}
+          alt={movie?.title}
+          className="movie-image-detail"
+        />
+
+        <div className="genre-row">
+          {movie?.genres.map((genre, index) => (
+            <div key={index} className="genre">
+              {genre}
+            </div>
+          ))}
+        </div>
+        <div className="movie-details-detail">
+          <div className="div-rating-detail">
+            <p className="movie-rating-detail">{movie?.rating.toString()}</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="div-overview-detail" style={{}}>
+        <p className="overview-text-detail">Overview: </p>
+        <p className="movie-overview-detail">{movie?.overview}</p>
+      </div>
     </div>
   );
 };
