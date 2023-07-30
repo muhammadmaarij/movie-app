@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/MovieCardStyles.css";
+import { Link } from "react-router-dom";
 
 interface MovieCardProps {
   id: number;
@@ -33,24 +34,26 @@ const MovieCard: React.FC<MovieCardProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${imageUrl}`}
-          alt={name}
-          className="movie-image"
-        />
-        <div className="movie-details">
-          <h4 className="movie-name">{name}</h4>
-          <div className="div-rating">
-            <p
-              className="movie-rating"
-              style={rating > 7 ? { color: "lightgreen" } : { color: "red" }}
-            >
-              {rating}
-            </p>
+      <Link to={`/movie/${id}`}>
+        <div>
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${imageUrl}`}
+            alt={name}
+            className="movie-image"
+          />
+          <div className="movie-details">
+            <h4 className="movie-name">{name}</h4>
+            <div className="div-rating">
+              <p
+                className="movie-rating"
+                style={rating > 7 ? { color: "lightgreen" } : { color: "red" }}
+              >
+                {rating}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
       {isHovered && (
         <div
           className="div-overview"
