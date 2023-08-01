@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/MovieDetailStyles.css";
 import { useParams, Link } from "react-router-dom";
+import nullImage from "../assets/images/null.jpg";
 
 interface MovieDetailsParams {
   id: string;
@@ -11,7 +12,7 @@ interface Movie {
   title: string;
   overview: string;
   genres: Array<string>;
-  rating: Number;
+  rating: number;
   url: string;
   releaseDate: string;
 }
@@ -52,6 +53,10 @@ const MovieDetails: React.FC = () => {
     fetchMovieDetails();
   }, [id]);
 
+  const getRatingColor = (rating: number) => {
+    return rating < 7 ? "red" : "lightgreen";
+  };
+
   return (
     <div className="movie-card-detail">
       <div>
@@ -59,11 +64,24 @@ const MovieDetails: React.FC = () => {
         <p className="movie-year-detail">
           {movie?.releaseDate.substring(0, 4)}
         </p>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${movie?.url}`}
-          alt={movie?.title}
-          className="movie-image-detail"
-        />
+        <div className="image-overview">
+          <img
+            src={
+              movie?.url
+                ? `https://image.tmdb.org/t/p/w500/${movie?.url}`
+                : nullImage
+            }
+            alt={movie?.title}
+            className="movie-image-detail"
+          />
+          <div className="div-overview-detail" style={{}}>
+            <p className="movie-rating-detail" style={{
+              color: movie?.rating ? getRatingColor(movie.rating) : "lightgreen",
+            }} >⭐{movie?.rating.toString()}</p>
+            <p className="overview-text-detail">Overview: </p>
+            <p className="movie-overview-detail">{movie?.overview}</p>
+          </div>
+        </div>
 
         <div className="genre-row">
           {movie?.genres.map((genre, index) => (
@@ -72,17 +90,10 @@ const MovieDetails: React.FC = () => {
             </div>
           ))}
         </div>
-        <div className="movie-details-detail">
-          <div className="div-rating-detail">
-            <p className="movie-rating-detail">{movie?.rating.toString()}</p>
-          </div>
-        </div>
+
       </div>
 
-      <div className="div-overview-detail" style={{}}>
-        <p className="overview-text-detail">Overview: </p>
-        <p className="movie-overview-detail">{movie?.overview}</p>
-      </div>
+
     </div>
   );
 };

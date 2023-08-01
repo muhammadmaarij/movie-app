@@ -3,7 +3,7 @@
     margin: 0;
   }
 .movie-card{
-    height: 380px;
+    height: 400px;
     width: 200px;
     background-color: #071952;
     position: relative;
@@ -20,6 +20,7 @@
     margin-left: 10px;
     word-wrap: break-word;
     width: 180px;
+    overflow: hidden;
 }
 .movie-name{
     width: 130px;
@@ -54,6 +55,7 @@
     width: 200px;
     /* height: 290px; */
     background-color: #97FEED;
+    overflow: hidden;
 }
 .overview-text{
     text-align: left;

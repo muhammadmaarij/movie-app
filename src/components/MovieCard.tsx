@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/MovieCardStyles.css";
 import { Link } from "react-router-dom";
+import nullImage from "../assets/images/null.jpg";
 
 interface MovieCardProps {
   id: number;
@@ -18,6 +19,8 @@ const MovieCard: React.FC<MovieCardProps> = ({
   overview,
 }) => {
   const [isHovered, setIsHovered] = useState<Boolean>(false);
+
+  console.log(imageUrl);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -37,7 +40,11 @@ const MovieCard: React.FC<MovieCardProps> = ({
       <Link to={`/movie/${id}`}>
         <div>
           <img
-            src={`https://image.tmdb.org/t/p/w500/${imageUrl}`}
+            src={
+              imageUrl
+                ? `https://image.tmdb.org/t/p/w500/${imageUrl}`
+                : nullImage
+            }
             alt={name}
             className="movie-image"
           />
@@ -59,10 +66,10 @@ const MovieCard: React.FC<MovieCardProps> = ({
           className="div-overview"
           style={
             overview.length > 330
-              ? { top: "80px", height: "300px" }
+              ? { top: "80px", height: "320px" }
               : overview.length > 240
-              ? { top: "150px", height: "230px" }
-              : { top: "180px", height: "200px" }
+              ? { top: "170px", height: "230px" }
+              : { top: "200px", height: "200px" }
           }
         >
           <p className="overview-text">Overview: </p>
