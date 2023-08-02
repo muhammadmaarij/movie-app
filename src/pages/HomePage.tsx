@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../App.css";
 import MovieCard from "../components/MovieCard";
+import SurpriseMe from "../components/SurpriseMe";
+
 
 const HomePage: React.FC = () => {
   const [movies, setMovies] = useState<any[]>([]);
   const [page, setPage] = useState<number>(1);
+  const [randomId, setRandomId] = useState<number>(0);
   const [sortBy, setSortBy] = useState<string>("popularity.desc");
   const [searchCriteria, setSearchCriteria] = useState<string>("");
 
@@ -47,6 +50,10 @@ const HomePage: React.FC = () => {
   const handlePrevPage = () => {
     setPage((prevPage) => prevPage - 1);
   };
+  const handleSurpriseMe = () => {
+    setRandomId(Math.floor(Math.random() * (999999 - 111111 + 1)) + 111111)
+
+  };
 
   const headerStyles: React.CSSProperties = {
     textAlign: "center",
@@ -71,7 +78,7 @@ const HomePage: React.FC = () => {
         <div style={{ display: 'flex', flexDirection: 'row' }}>
           <input
             type="text"
-            placeholder="Search movies by name, genre, release year, or language..."
+            placeholder="Search movies by name, or keyword..."
             value={searchCriteria}
             onChange={handleSearch}
             style={{
@@ -92,8 +99,6 @@ const HomePage: React.FC = () => {
           </button>
         </div>
       </div>
-
-
       <div
         style={{
           textAlign: "center",
@@ -194,6 +199,23 @@ const HomePage: React.FC = () => {
             Next Page
           </button>
         </div>
+        <button
+          style={{
+            backgroundColor: "lightgreen",
+            ...buttonStyles,
+            marginTop: '20px',
+            marginBottom: '20px',
+            color: "#071952",
+            width: '150px',
+            borderWidth: '2px',
+            borderRadius: '30px',
+            borderColor: 'lightgreen'
+          }}
+          onClick={handleSurpriseMe}
+        >
+          Surprise Me
+        </button>
+        {randomId == 0 ? <div></div> : <SurpriseMe id={randomId} />}
       </div>
     </div>
   );
