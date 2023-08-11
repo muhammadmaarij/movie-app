@@ -35,7 +35,6 @@ const MovieDetails: React.FC = () => {
         }
 
         const data = await response.json();
-        console.log("asdasd", data);
         setMovie({
           title: data.title,
           overview: data.overview,
@@ -44,7 +43,6 @@ const MovieDetails: React.FC = () => {
           releaseDate: data.release_date,
           genres: data.genres.map((genre: { name: string }) => genre.name),
         });
-        console.log("s", movie);
       } catch (error) {
         console.error("Error fetching movie details:", error);
       }

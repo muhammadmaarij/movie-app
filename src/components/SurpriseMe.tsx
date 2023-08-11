@@ -19,14 +19,12 @@ interface Movie {
 
 const SurpriseMe: React.FC<MovieDetailsParams> = ({ id }) => {
 
-    //   const id = Math.floor(Math.random() * (999999 - 111111 + 1)) + 111111;
 
     const [movie, setMovie] = useState<Movie | null>(null);
 
     useEffect(() => {
         const fetchMovieDetails = async () => {
             try {
-                console.log(id)
                 const apiKey = "f0e7c61a472fd0fd97de4d5073a24dfe";
                 const response = await fetch(
                     `https://api.themoviedb.org/3/movie/${id.toString()}?api_key=${apiKey}`
@@ -37,7 +35,6 @@ const SurpriseMe: React.FC<MovieDetailsParams> = ({ id }) => {
                 }
 
                 const data = await response.json();
-                console.log("asdasd", data);
                 setMovie({
                     title: data.title,
                     overview: data.overview,
@@ -46,7 +43,6 @@ const SurpriseMe: React.FC<MovieDetailsParams> = ({ id }) => {
                     releaseDate: data.release_date,
                     genres: data.genres.map((genre: { name: string }) => genre.name),
                 });
-                console.log("s", movie);
             } catch (error) {
                 console.error("Error fetching movie details:", error);
             }

@@ -22,9 +22,7 @@ const HomePage: React.FC = () => {
       );
       const data = await response.json();
       setMovies(data.results);
-      console.log(data.results);
     } catch (error) {
-      console.log("dssds")
       console.error("Error fetching data:", error);
     }
   };
@@ -34,12 +32,9 @@ const HomePage: React.FC = () => {
       const response = await fetch(
         `https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query=${searchCriteria}`
       );
-      console.log(searchCriteria);
       const data = await response.json();
       setMovies(data.results);
-      console.log(data.results);
     } catch (error) {
-      console.log("dssds")
       console.error("Error fetching data:", error);
     }
   };
