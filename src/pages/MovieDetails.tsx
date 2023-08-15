@@ -25,7 +25,7 @@ const MovieDetails: React.FC = () => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
-        const apiKey = "f0e7c61a472fd0fd97de4d5073a24dfe";
+        const apiKey = "f0e7c61a472fd0fd97d1i9s8e4d5073a24dfe";
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
         );
